@@ -3,14 +3,13 @@ const cors = require('cors');
 const fetch = require('node-fetch');
 const storage = require('node-persist');
 
-
 const IGDB = require('./IGDB');
 const app = express();
 
 const APIURL = 'https://api-v3.igdb.com';
 
 app.use(cors());
-app.listen(9000, () => { console.log('listening on 9000') });
+app.listen(process.env.PORT || 9000, () => { console.log('listening on 9000') });
 setupCache();
 
 async function setupCache() {
@@ -58,6 +57,10 @@ async function fetchFromCache(platform, paging) {
         return false;
     }
 }
+
+app.get('/test', async (req, res) => {
+    res.json('test');
+})
 
 app.get('/cache', async (req, res) => {
     const cacheItem = await storage.getItem('130');
