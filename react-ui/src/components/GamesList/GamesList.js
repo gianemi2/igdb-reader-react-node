@@ -34,7 +34,6 @@ export default class GamesList extends Component {
         } else {
             return (
                 <React.Fragment>
-                    <div onClick={this.reloadMasonry.bind(this)}>Reload Masonry</div>
                     <Masonry
                         ref={function (c) { this.masonry = this.masonry || c.masonry; }.bind(this)}
                         className={'my-gallery-class'} // default ''
