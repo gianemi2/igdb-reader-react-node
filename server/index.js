@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
 const storage = require('node-persist');
+const path = require('path');
 
 const IGDB = require('./IGDB');
 const app = express();
@@ -58,9 +59,7 @@ async function fetchFromCache(platform, paging) {
     }
 }
 
-app.get('/test', async (req, res) => {
-    res.json('test');
-})
+app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
 app.get('/cache', async (req, res) => {
     const cacheItem = await storage.getItem('130');
@@ -102,3 +101,7 @@ app.get('/api/status', async (req, res) => {
     const response = await fetch(APIURL + '/api_status', headers);
     const data = await response.json();
 })
+
+app.get('*', function (request, response) {
+    response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+});

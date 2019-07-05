@@ -1,5 +1,5 @@
 export default {
-    base: 'http://localhost:9000',
+    base: '',
     platform: {
         pc: 6,
         ps4: 48,
