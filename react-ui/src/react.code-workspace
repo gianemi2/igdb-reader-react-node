@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "/Users/marcogiannini/Dropbox (Personale)/progetti/igdb-project"
+		},
+		{
+			"path": "/Users/marcogiannini/Dropbox (Personale)/progetti/my-movies"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.js": "javascriptreact"
+		}
+	},
+}

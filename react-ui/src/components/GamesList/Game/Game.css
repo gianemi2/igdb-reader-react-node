@@ -1,0 +1,18 @@
+.card-media-chips {
+    position: relative;
+}
+
+.card-media-chips .chip-groups {
+    padding: 10px 15px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow-x: scroll;
+}
+
+.card-media-chips .chip-groups .MuiChip-root {
+    margin-right: 10px;
+}

@@ -1,0 +1,10 @@
+.my-gallery-class {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding: 15px 0;
+}
+
+.my-gallery-class .card-container {
+    padding: 15px;
+    width: 25%;
+}
