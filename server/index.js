@@ -98,8 +98,19 @@ app.post('/search/:search/page/:page', async (req, res) => {
 
 app.get('/api/status', async (req, res) => {
     const headers = new IGDB();
-    const response = await fetch(APIURL + '/api_status', headers);
-    const data = await response.json();
+    try {
+        const response = await fetch(APIURL + '/api_status', headers);
+        const data = await response.json();
+        res.json({
+            success: true,
+            message: data[0]
+        });
+    } catch (error) {
+        res.json({
+            success: false,
+            message: error
+        })
+    }
 })
 
 app.get('*', function (request, response) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, CssBaseline, InputBase, Icon, Chip } from '@material-ui/core';
 import { fade, withStyles } from '@material-ui/core/styles';
-import api from '../api';
 
 import './TitleBar.css';
 
@@ -82,6 +81,7 @@ class TitleBar extends React.Component {
         }
 
         if (value.length === 0) {
+            console.log('Trying to reset...');
             this.props.resettingSearch(true);
         }
     }
@@ -93,18 +93,20 @@ class TitleBar extends React.Component {
     }
 
     async fetchApiStatus() {
-        const response = await fetch(api.base + '/api/status');
+        const response = await fetch('/api/status');
         const data = await response.json();
-        this.setState({
-            api_status: {
-                plan: data[0].plan,
-                hits: data[0].usage_reports.usage_report.current_value,
-                max: data[0].usage_reports.usage_report.max_value
-            }
-        })
+        if (data.success) {
+            this.setState({
+                api_status: {
+                    plan: data.message.plan,
+                    hits: data.message.usage_reports.usage_report.current_value,
+                    max: data.message.usage_reports.usage_report.max_value
+                }
+            })
+        }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.fetchApiStatus();
     }
 

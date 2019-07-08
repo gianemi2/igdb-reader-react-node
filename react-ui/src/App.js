@@ -13,7 +13,6 @@ export class App extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.defaultPlatform = api.platform.switch;
         this.games = {};
 

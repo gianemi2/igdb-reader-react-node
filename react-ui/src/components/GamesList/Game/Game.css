@@ -1,3 +1,7 @@
+.card-game-title span {
+    font-size: 1.1em;
+}
+
 .card-media-chips {
     position: relative;
 }

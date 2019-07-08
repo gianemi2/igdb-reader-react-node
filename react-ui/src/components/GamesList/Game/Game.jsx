@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -47,24 +48,27 @@ export default class Game extends React.Component {
     render() {
         return (
             <Card>
-                <CardActionArea>
-                    <div className="card-media-chips" style={{ position: 'relative' }}>
-                        <CardMedia
-                            image={this.state.image}
-                            title="Contemplative Reptile"
-                            style={{ height: 250 }}
-                        />
-                        <div className="chip-groups">
-                            {
-                                this.state.game.platforms
-                                    ? this.state.game.platforms.map(({ id, name }) => {
-                                        return <Chip size="small" key={id} label={name}></Chip>
-                                    })
-                                    : null
-                            }
-                        </div>
+                <CardHeader
+                    title={this.state.game.name}
+                    className="card-game-title"
+                //subheader="September 14, 2016"
+                />
+                <div className="card-media-chips" style={{ position: 'relative' }}>
+                    <CardMedia
+                        image={this.state.image}
+                        title={this.state.game.name}
+                        style={{ height: 250 }}
+                    />
+                    <div className="chip-groups">
+                        {
+                            this.state.game.platforms
+                                ? this.state.game.platforms.map(({ id, name }) => {
+                                    return <Chip size="small" key={id} label={name}></Chip>
+                                })
+                                : null
+                        }
                     </div>
-                </CardActionArea>
+                </div>
                 <CardActions>
                     <Button size="small" color="primary" onClick={this.handleExpandClick}>
                         Learn More
@@ -74,7 +78,6 @@ export default class Game extends React.Component {
                     in={this.state.expanded}
                     addEndListener={(node, done) => {
                         node.addEventListener('transitionrun', () => {
-                            console.log(node.clientHeight);
                             this.props.onToggleContent();
                         })
                         node.addEventListener('transitionend', () => {
@@ -82,9 +85,6 @@ export default class Game extends React.Component {
                         })
                     }}>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {this.state.game.name}
-                        </Typography>
                         <Typography style={{ maxHeight: 150, overflowY: 'scroll' }} variant="body2" color="textSecondary" component="p">
                             {this.state.game.summary}
                         </Typography>
