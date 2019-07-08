@@ -1,8 +1,9 @@
 module.exports = class IGDB {
     constructor(meth = 'GET', body = false) {
+        require('dotenv').config();
         const header = {
             'Accept': 'application/json',
-            'user-key': '620183c2f4a8f3a16bc723a4455ae140'
+            'user-key': process.env.API_KEY
         };
         const init = {
             method: meth,
